@@ -54,3 +54,8 @@ h2, em {
 #rnbo-parameter-sliders > div > input:first-of-type {
     flex-grow: 1;
 }
+
+#detune::-webkit-slider-thumb {
+    background: #000000;
+    border-radius: 0px;
+}
