@@ -10,7 +10,7 @@ const renderer = new THREE.WebGLRenderer( { alpha: true, antialias: true} );
 //renderer.setClearAlpha = 1;
 renderer.setClearColorHex = (0xFAA700, 1)
 const docCanvas = document.getElementById("threeCanvas")
-renderer.setSize( (window.innerWidth/3), (window.innerHeight/3) );
+renderer.setSize( (window.innerWidth/2), (window.innerHeight/2) );
 //renderer.setSize(width = 120,height = 90);
 //document.body.appendChild( renderer.domElement );
 docCanvas.appendChild( renderer.domElement );
