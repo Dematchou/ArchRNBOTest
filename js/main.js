@@ -15,9 +15,18 @@ renderer.setSize( (window.innerWidth/3), (window.innerHeight/3) );
 //document.body.appendChild( renderer.domElement );
 docCanvas.appendChild( renderer.domElement );
 
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const material = new THREE.MeshBasicMaterial( { color: 0x000000 } );
-const cube = new THREE.Mesh( geometry, material );
+/* const light = new THREE.AmbientLight( 0x404040 ); // soft white light
+scene.add( light ); */
+
+const geometry = new THREE.BoxGeometry( 0.5, 0.5, 0.5 ); 
+const material = new THREE.MeshBasicMaterial( { color: 0x000000 } ); 
+const sphere = new THREE.Mesh( geometry, material ); 
+//scene.add( sphere );
+
+/* const geometry = new THREE.SphereGeometry(15., 32, 16);
+const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+const sphere = new THREE.Mesh( geometry, material );
+*/
 
 const wireframe = new THREE.WireframeGeometry( geometry );
 
@@ -25,23 +34,49 @@ const line = new THREE.LineSegments( wireframe );
 line.material.depthTest = false;
 line.material.opacity = 1.;
 line.material.transparent = true;
-line.material.color = ( {color: 0x00ff00})
+line.material.color = ( {color: 0x000000} )
 
 scene.add( line );
 
 
-const geometryPlane = new THREE.PlaneGeometry( 1, 1, 1 );
+
+const size = 2;
+const divisions = 20;
+
+const gridHelper = new THREE.GridHelper( size, divisions );
+gridHelper.material.color = ( {color: 0x000000})
+
+gridHelper.rotation.x = 1.570796;
+
+scene.add( gridHelper );
+
+
+
+/* const geometryPlane = new THREE.PlaneGeometry( 1, 1, 1 );
 const materialB = new THREE.MeshBasicMaterial( { color: 0x000000 } );
 const plane2 = new THREE.Mesh( geometryPlane, materialB );
 //scene.add( plane2 );
+
+const wireframePlane = new THREE.WireframeGeometry( geometryPlane );
+
+const linePlane = new THREE.LineSegments( wireframePlane );
+linePlane.material.depthTest = false;
+linePlane.material.opacity = 1.;
+linePlane.material.transparent = true;
+linePlane.material.color = ( {color: 0x00ff00})
+
+scene.add( linePlane ); */
 
 camera.position.z = 1.5;
 
 function animate() {
 	requestAnimationFrame( animate );
 
-	line.rotation.x += 0.01;
-	line.rotation.y += 0.01;
+	sphere.rotation.x += 0.02;
+	sphere.rotation.y += 0.01;
+
+    line.rotation.x += -0.02;
+	line.rotation.y += -0.02;
 
 	renderer.render( scene, camera );
 }
