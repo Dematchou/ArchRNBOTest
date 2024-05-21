@@ -6,8 +6,9 @@ const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.inner
 
 
 
-const renderer = new THREE.WebGLRenderer( { alpha: true, antialias: true} ); 
+const renderer = new THREE.WebGLRenderer( { alpha: true, antialias: false} ); 
 //renderer.setClearAlpha = 1;
+renderer.setPixelRatio = (window.devicePixelRatio);
 renderer.setClearColorHex = (0xFAA700, 1)
 const docCanvas = document.getElementById("threeCanvas")
 renderer.setSize( (window.innerWidth/2), (window.innerHeight/2) );
@@ -40,10 +41,12 @@ scene.add( line );
 
 
 
-const size = 2;
-const divisions = 20;
+const size = 2; 
+const divisions = 10;
 
 const gridHelper = new THREE.GridHelper( size, divisions );
+
+gridHelper.material.opacity = 0.1;
 gridHelper.material.color = ( {color: 0x000000})
 
 gridHelper.rotation.x = 1.570796;
@@ -75,7 +78,7 @@ function animate() {
 	sphere.rotation.x += 0.02;
 	sphere.rotation.y += 0.01;
 
-    line.rotation.x += -0.02;
+    line.rotation.x += -0.005;
 	line.rotation.y += -0.02;
 
 	renderer.render( scene, camera );
